@@ -8555,9 +8555,9 @@ ul, li {
     .termins-dictionary__alphabet ul li a {
       text-transform: uppercase;
       color: #4d4d4d; }
-      .termins-dictionary__alphabet ul li a:hover, .termins-dictionary__alphabet ul li a:active {
-        font-family: "MontserratBold", sans-serif;
-        text-decoration: none; }
+    .termins-dictionary__alphabet ul li.active a {
+      font-family: "MontserratBold", sans-serif;
+      text-decoration: none; }
 
 .termins-dictionary__blocks {
   padding-left: 54px;

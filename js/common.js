@@ -414,9 +414,10 @@ $(function() {
 				.removeClass('active');
 		});
 
-		(function dictionaryScroll() {
+		function dictionaryScroll() {
 			var $alphaberButtons = $('.termins-dictionary__alphabet li a'),
-				_self = this;
+				_self = this,
+				$dictionaryBlocks = $('.dictionary-block');
 			
 			this.init = function(){
 				this.events();
@@ -429,43 +430,68 @@ $(function() {
 			this.alphabetClick = function(e) {
 				var $th = $(this),
 					thatAlphabetLetter = $th.text();
-
-				console.log('что возврвщает леттерЧек ' + _self.letterCheck(thatAlphabetLetter));
+	
+				if(_self.letterIndexCheck(_self.letterCheck(thatAlphabetLetter)[1]) == true){
+					_self.scrollToLetter(_self.letterCheck(thatAlphabetLetter)[1]);
+					
+					$th
+						.parent()
+						.addClass('active')
+						.siblings()
+						.removeClass('active');
+				}
 				
 				return false;
 			},
 
 			this.letterCheck = function(letter) {
-				var $dictionaryBlocks = $('.dictionary-block'),
-					translatedLetter = letter,
-					returned;
+				var arr = [];
 
+					console.log(letter);
 
 				$dictionaryBlocks.each(function(ind, elem) {
-					var currentLetter = $(elem).find('.dictionary-block__letter').text();
 
-					console.log('translatedLetter= ' +  translatedLetter);
-					console.log('currentLetter= ' + currentLetter);
-
-					if(translatedLetter === currentLetter){
-						returned = true;
-						return;
-					}else{
-						returned = false;
-					}
+					arr.push(elem.querySelector('.dictionary-block__letter').innerText.toLowerCase());
 				});
 
-				return returned;
+				return [arr.indexOf(letter) != -1, arr.indexOf(letter)];
+			},
+
+			this.letterIndexCheck = function(returnedIndex) {
+				if(returnedIndex == -1){
+					return false;
+				}
+				return true;
+			},
+
+			this.scrollToLetter = function(letterIndex) {
+				console.log(letterIndex);
+				
+				var top = $dictionaryBlocks.eq(letterIndex).offset().top,
+					minus, 
+					luft;
+					console.log('minus = ' + minus);
+
+				if(screen.width > 768){
+					minus = 105; 
+				}else{
+					minus = 0;
+
+				}
+				luft = top - $('.header:not(.banner--clone)').height() + minus;
+
+				$('html, body').animate({scrollTop: luft}, 800);
+
+				console.log('top= ' + top);
 			}
 
-			this.scrollToLetter = function() {
-
-			}
-
-			this.init();
-
-
-		})();
+		}
+		
+		if(document.querySelector('.termins-dictionary__content') !== null){
+			var alphabet = new dictionaryScroll;
+			alphabet.init();
+			
+		}
 	// end section termins-dictionary
 
 	//Chrome Smooth Scroll
@@ -480,11 +506,4 @@ $(function() {
 
 	$("img, a").on("dragstart", function(event) { event.preventDefault(); });
 	
-});
-
-$(window).load(function() {
-
-	$(".loader_inner").fadeOut();
-	$(".loader").delay(400).fadeOut("slow");
-
 });
