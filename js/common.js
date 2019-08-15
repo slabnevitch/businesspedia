@@ -3,8 +3,13 @@ $(function() {
 	// header
 		var menuSliderSettings = {
 			slidesToShow:3,
+			slidesToScroll:3,
 			dots: false,
 			mobileFirst: true,
+			touchThreshold: 100,
+			// edgeFriction: ,
+			// swipeToSlide: true,
+			// swipeToSlide: true,
 			responsive: [
 
 			{
@@ -19,7 +24,8 @@ $(function() {
 				breakpoint: 0,
 				settings: {
 
-					slidesToShow:2
+					slidesToShow:2,
+					slidesToScroll:3
 
 				}	
 			}
@@ -47,6 +53,11 @@ $(function() {
 						.find('.toggle-mnu')
 						.removeClass('on');
 
+					$('.termins-dictionary__content').addClass('termins-dictionary__content--fixed');
+
+			},
+			onUnstick:   function () {
+				$('.termins-dictionary__content').removeClass('termins-dictionary__content--fixed');
 			}
 
 			 // onUnstick: function () {
@@ -273,20 +284,18 @@ $(function() {
 				$href = $th.attr('href'),
 				$parent = $th.parent(),
 				$parentTabs = $th.closest('.tabs');
-			
-			$parent.addClass('tabs__item--active');
-			
+
 			$tabs.each(function(ind, elem) {
 				if($(elem).attr('href') !== $href){
 					$(elem).parent().removeClass('tabs__item--active');
+				}else{
+					$(elem).parent().addClass('tabs__item--active');
 				}
 			});
-					// .siblings()
-					// .removeClass('tabs__item--active');
-							
+				
 			$parentTabs.find($href).removeClass('hidden')
-					.siblings()
-					.addClass('hidden');
+				.siblings()
+				.addClass('hidden');
 		});
 
 	// end tabs
@@ -475,7 +484,7 @@ $(function() {
 				if(screen.width > 768){
 					minus = 105; 
 				}else{
-					minus = 0;
+					minus = 70;
 
 				}
 				luft = top - $('.header:not(.banner--clone)').height() + minus;
@@ -492,7 +501,80 @@ $(function() {
 			alphabet.init();
 			
 		}
+
+		if(document.querySelector('.scroll-pane')){
+			var scrollPane = $('.scroll-pane').jScrollPane({
+				verticalDragMaxHeight : 16,
+				animateScroll : true,
+				resizeSensor: true,
+				// contentWidth: 40 ,
+				// verticalGutter: 100,
+				// autoReinitialise: true
+			});
+
+			var scrollPaneApi = scrollPane.data('jsp');
+
+			scrollPaneApi.reinitialise();
+
+			$(window).resize(function() {
+				scrollPaneApi.reinitialise();
+			});
+			
+		}
 	// end section termins-dictionary
+
+	// section forward
+		var forwardSlider = $('.forward-computer__slider').slick({
+			// fade: true
+			arrows: false,
+			draggable: false,
+			swipe: false,
+			touchMove: false,
+			responsive: [
+
+			{
+				breakpoint: 769,
+				settings: {
+
+					fade: true
+
+				}	
+			}
+			]
+
+		});
+		
+		$('.forward-map svg .part').click(function() {
+			forward($(this).index());
+		});
+		
+		$('.forward-map .forward-map__icon').click(function(e) {
+			forward($(this).index() - 2);
+		});
+
+		console.log($('.forward-map__icon').length);
+
+		function forward(ind) {
+			console.log(ind);
+			$('.forward-map svg .part').eq(ind)
+				.css('fill', '#fff')
+				.siblings()
+				.css('fill', '#005096')
+
+			$('.forward-map__icon').eq(ind)
+				.addClass('active')
+				.siblings()
+				.removeClass('active');
+
+			$('.forward-diagram__title').eq(ind)
+				.addClass('active')
+				.siblings()
+				.removeClass('active');
+
+			forwardSlider.slick('slickGoTo', ind);
+		}
+
+	// end section forward
 
 	//Chrome Smooth Scroll
 	try {
