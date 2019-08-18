@@ -6186,7 +6186,16 @@ h3 {
       .item-mark__link:hover:before, .item-mark__link:active:before {
         display: block; }
       .item-mark__link:hover .main-menu__val, .item-mark__link:active .main-menu__val {
-        font-family: "MontserratBold", sans-serif; }
+        font-weight: bold; }
+        .item-mark__link:hover .main-menu__val:after, .item-mark__link:active .main-menu__val:after {
+          position: absolute;
+          display: block;
+          content: attr(title);
+          font-weight: bold;
+          height: 1px;
+          color: transparent;
+          overflow: hidden;
+          visibility: hidden; }
   .item-mark:after {
     visibility: hidden;
     position: absolute;
@@ -7347,7 +7356,8 @@ ul, li {
     top: auto; }
 
 .main-menu__val {
-  font-family: "MontserratSemiBold", sans-serif;
+  text-align: center;
+  font-family: "MontserratMedium", sans-serif;
   font-size: 14px;
   line-height: 18px;
   color: #4d4d4d; }
