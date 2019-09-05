@@ -336,9 +336,9 @@ $(function() {
 	// end datepicker
 
 	// section training-top
-		if(document.querySelector('.training-prices__main') !== null){
+		if(document.querySelector('.training-sidebar--with-dropdown .training-prices__main') !== null){
 
-			$('.training-prices__main').on('click', function() {
+			$('.training-sidebar--with-dropdown .training-prices__main').on('click', function() {
 				console.log('prices click');
 				$(this)
 				.closest('.training-prices__inner')
