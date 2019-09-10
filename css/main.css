@@ -7873,8 +7873,10 @@ ul, li {
       .forward-diagram svg .part {
         fill: #005096;
         cursor: pointer; }
-        .forward-diagram svg .part.active {
-          fill: #fff; }
+        .forward-diagram svg .part:hover, .forward-diagram svg .part.active {
+          fill: #fff;
+          -webkit-filter: url(#dropshadow);
+          filter: url(#dropshadow); }
   .forward-computer {
     padding-left: 40px;
     height: 438px;

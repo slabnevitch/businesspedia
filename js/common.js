@@ -543,23 +543,62 @@ $(function() {
 			]
 
 		});
-		
+
 		$('.forward-map svg .part').click(function() {
-			forward($(this).index());
+			// forward($(this).index() -1 );
+			console.log(this.classList.contains('standactive'));
+			console.log(this);
 		});
 		
 		$('.forward-map .forward-map__icon').click(function(e) {
 			forward($(this).index() - 2);
+			console.log('icon index ' + ($(this).index() - 2));
 		});
 
-		console.log($('.forward-map__icon').length);
+		$('.forward-map .forward-map__icon').hover(function(e) {
+			$('.forward-map svg path')
+				.eq(($(this).index() - 2))
+				.not('.standactive')
+				.attr('class', 'part active');
+			
+			$(this)
+				.addClass('active');
+			},
+
+			function(e) {
+
+				$('.forward-map svg path')
+					.eq(($(this).index() - 2))
+					.not('.standactive')
+					.attr('class', 'part');
+		});
+
+		$('.forward-map svg path').hover(function() {
+				console.log('svg path hover!');
+				$('.forward-map .forward-map__icon')
+					.eq($(this).index() -1 )
+					.addClass('active');
+
+			},
+
+			function() {
+				if(this.classList.contains('standactive')){
+					console.log("condition yes");
+					return false;
+				}
+				
+				$('.forward-map .forward-map__icon')
+				.eq($(this).index() - 1)
+				.removeClass('active');
+		});
 
 		function forward(ind) {
-			console.log(ind);
-			$('.forward-map svg .part').eq(ind)
-				.css('fill', '#fff')
+			$('.forward-map svg path').eq(ind)
+				// .css('fill', '#fff')
+				.attr('class', 'part active standactive')
 				.siblings()
-				.css('fill', '#005096')
+				.attr('class', 'part')
+				// .css('fill', '#005096')
 
 			$('.forward-map__icon').eq(ind)
 				.addClass('active')

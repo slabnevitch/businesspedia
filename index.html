@@ -1071,7 +1071,18 @@
               <div class="forward-diagram__title">Будьте в курсе</div>
               <div class="forward-map">
                 <svg viewBox="0 0 292.5 618.75">
-                  <path id="part-1" d="M 215.06209,109.17416 C 172.85123,59.486073 124.24265,21.730141 31.391411,7.0833816 L 31.264449,112.57385 c 36.75358,8.88445 70.449011,28.44237 100.663621,58.03336 z" class="part active"></path>
+                  <filter id="dropshadow" xmlns="http://www.w3.org/2000/svg">
+                    <fegaussianblur in="SourceAlpha" stddeviation="6"></fegaussianblur>
+                    <feoffset dx="2" dy="2" result="offsetblur"></feoffset>
+                    <fecomponenttransfer>
+                      <fefunca type="linear" slope=".5"></fefunca>
+                    </fecomponenttransfer>
+                    <femerge>
+                      <femergenode></femergenode>
+                      <femergenode in="SourceGraphic"></femergenode>
+                    </femerge>
+                  </filter>
+                  <path id="part-1" d="M 215.06209,109.17416 C 172.85123,59.486073 124.24265,21.730141 31.391411,7.0833816 L 31.264449,112.57385 c 36.75358,8.88445 70.449011,28.44237 100.663621,58.03336 z" class="part active standactive"></path>
                   <path id="part-2" d="m 132.00545,170.62624 82.75883,-61.50719 c 45.84116,51.04398 70.31492,113.451 69.16285,189.14729 l -103.16741,-0.28898 c 0.24451,-65.94459 -24.15859,-96.78499 -48.75427,-127.35112 z" class="part"></path>
                   <path id="part-3" d="m 180.32624,298.12185 103.60089,0.14449 c 0.99966,69.29934 -21.23324,132.48155 -70.69542,188.68255 l -80.87688,-62.86598 c 24.69901,-31.27356 43.6124,-65.50316 47.97141,-125.96106 z" class="part"></path>
                   <path id="part-4" d="M 213.23171,487.25541 C 169.93706,536.67495 112.54118,572.79905 31.162277,586.31058 L 30.812957,483.21633 C 84.098241,472.71117 107.76496,447.67125 132.26088,424.21565 Z" class="part"></path>
