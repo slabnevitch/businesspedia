@@ -53,8 +53,8 @@ $(function() {
 						.find('.toggle-mnu')
 						.removeClass('on');
 
-					$('.termins-dictionary__content').addClass('termins-dictionary__content--fixed');
-
+					// $('.termins-dictionary__content').addClass('termins-dictionary__content--fixed');
+					// $alphabetClone.removeClass('disabled');
 			},
 			onUnstick:   function () {
 				$('.termins-dictionary__content').removeClass('termins-dictionary__content--fixed');
@@ -303,13 +303,7 @@ $(function() {
 	// custom selects
 		$( ".bp-form__select" ).selectmenu({
 			width: $(this).closest('.bp-form__label').width(),
-			position: { my : "left top+50", at: "left top" },
-			 create: function( event, ui ) {
-			 	// console.log(event);
-			 	// console.log(ui);
-			 	// console.log(this);
-			 	// console.log($(this).closest('.bp-form__label').width());
-			 }
+			position: { my : "left top+50", at: "left top" }
 		});
 
 		$(window).resize(function() {
@@ -322,13 +316,11 @@ $(function() {
 
 		$('.picked-input').datepicker({
 			onShow: function(inst, animationCompleted) {
-				// console.log(inst.el.offsetWidth);
 				var elWidth = inst.el.offsetWidth;
 
 				inst.$datepicker
 					.find('.datepicker--pointer')
 					.css('left', elWidth - 20 + 'px');
-				console.log(inst.$datepicker.find('.datepicker--pointer').attr('class'));
 			}
 		});
 
@@ -339,7 +331,6 @@ $(function() {
 		if(document.querySelector('.training-sidebar--with-dropdown .training-prices__main') !== null){
 
 			$('.training-sidebar--with-dropdown .training-prices__main').on('click', function() {
-				console.log('prices click');
 				$(this)
 				.closest('.training-prices__inner')
 				// .find('.training-prices__list')
@@ -456,8 +447,6 @@ $(function() {
 			this.letterCheck = function(letter) {
 				var arr = [];
 
-					console.log(letter);
-
 				$dictionaryBlocks.each(function(ind, elem) {
 
 					arr.push(elem.querySelector('.dictionary-block__letter').innerText.toLowerCase());
@@ -474,12 +463,10 @@ $(function() {
 			},
 
 			this.scrollToLetter = function(letterIndex) {
-				console.log(letterIndex);
 				
 				var top = $dictionaryBlocks.eq(letterIndex).offset().top,
 					minus, 
 					luft;
-					console.log('minus = ' + minus);
 
 				if(screen.width > 768){
 					minus = 105; 
@@ -491,7 +478,6 @@ $(function() {
 
 				$('html, body').animate({scrollTop: luft}, 800);
 
-				console.log('top= ' + top);
 			}
 
 		}
@@ -544,15 +530,14 @@ $(function() {
 
 		});
 
-		$('.forward-map svg .part').click(function() {
-			// forward($(this).index() -1 );
-			console.log(this.classList.contains('standactive'));
-			console.log(this);
-		});
+		// $('.forward-map svg .part').click(function() {
+		// 	// forward($(this).index() -1 );
+		// 	console.log(this.classList.contains('standactive'));
+		// 	console.log(this);
+		// });
 		
 		$('.forward-map .forward-map__icon').click(function(e) {
 			forward($(this).index() - 2);
-			console.log('icon index ' + ($(this).index() - 2));
 		});
 
 		$('.forward-map .forward-map__icon').hover(function(e) {
@@ -574,7 +559,6 @@ $(function() {
 		});
 
 		$('.forward-map svg path').hover(function() {
-				console.log('svg path hover!');
 				$('.forward-map .forward-map__icon')
 					.eq($(this).index() -1 )
 					.addClass('active');
@@ -583,7 +567,6 @@ $(function() {
 
 			function() {
 				if(this.classList.contains('standactive')){
-					console.log("condition yes");
 					return false;
 				}
 				
@@ -614,6 +597,52 @@ $(function() {
 		}
 
 	// end section forward
+
+	// alphabet to sticked
+	var $alphabet = $('.termins-dictionary__alphabet'),
+		alphabetWidth = $alphabet.width(),
+		alphabetBeforeHeight = $('.termins-dictionary__blocks').height();
+		$alphabetClone = $('<div>',{
+			'class': 'alphabetClone disabled',
+			'height': alphabetBeforeHeight,
+			'width': alphabetWidth
+		});
+
+	$('.termins-dictionary__content').prepend($alphabetClone);
+
+	$(document).scroll(function(e) {
+		var themeTop = $('.termins-dictionary').next().offset().top,
+			
+				alphabetTop = document.querySelector('.termins-dictionary__alphabet').getBoundingClientRect().top + document.body.scrollTop,
+				alphabetHeight = $alphabet.height();
+
+
+		console.log('scrollTop ' + $(this).scrollTop());
+		console.log('alphabetHeight ' + alphabetHeight);
+
+		if($(this).scrollTop() == themeTop - (alphabetTop + alphabetHeight)){
+
+			// stickPoint = $(this).scrollTop();
+		}
+
+		if($(this).scrollTop() > themeTop - alphabetHeight -200){
+			$('.termins-dictionary__content').removeClass('termins-dictionary__content--fixed');
+			$alphabetClone.removeClass('disabled');
+			console.log('if condition minus ' + ( themeTop - (alphabetTop + alphabetHeight)));
+			// console.log('stickPoint  ' + stickPoint );
+		}
+		if($(this).scrollTop() < themeTop - 300){
+			$('.termins-dictionary__content').addClass('termins-dictionary__content--fixed');
+			$alphabetClone.addClass('disabled');
+		}
+		if($(this).scrollTop() < $('.header').height() + $('.termins-dictionary .title-wrapper').height() + $('.termins-dictionary__filter').height()){
+			$('.termins-dictionary__content').removeClass('termins-dictionary__content--fixed');
+		}
+
+		
+	});
+
+	// end alphabet to sticked	
 
 	//Chrome Smooth Scroll
 	try {

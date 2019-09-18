@@ -8839,7 +8839,11 @@ ul, li {
   display: -o-flex;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start; }
   .termins-dictionary__content .decor-dictionary-left {
     top: 147px;
     left: -200px; }
@@ -8851,6 +8855,7 @@ ul, li {
     top: 160px;
     height: -webkit-calc(70vh - 160px);
     height: calc(70vh - 160px);
+    height: 200px;
     overflow: auto; }
   .termins-dictionary__content--fixed .termins-dictionary__blocks {
     padding-left: 88px; }
@@ -8858,6 +8863,7 @@ ul, li {
 .termins-dictionary__alphabet {
   padding-right: 17px;
   width: 40px !important;
+  height: 200px !important;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -8911,6 +8917,9 @@ ul, li {
   font-size: 20px;
   font-family: "MontserratBold", sans-serif;
   text-transform: uppercase; }
+
+.alphabetClone.disabled {
+  display: none; }
 
 /*------end termins-dictionary---------*/
 /*---------footer------*/
