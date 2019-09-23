@@ -239,6 +239,13 @@ $(function() {
 	
 	// end section tutorials
 
+	// section day-termin
+		$('.day-termin__slider').slick({
+			nextArrow: $('.day-termin__nav .arrowed-right '),
+			fade: true
+		});
+	// ends section day-termin
+
 	// section top
 		var topSliderOpt = {
 			slidesToShow:1,
@@ -608,39 +615,43 @@ $(function() {
 			'width': alphabetWidth
 		});
 
-	$('.termins-dictionary__content').prepend($alphabetClone);
+		if($alphabet.height() > alphabetBeforeHeight){
+			$alphabet.height(alphabetBeforeHeight);
+		}
 
-	$(document).scroll(function(e) {
-		var themeTop = $('.termins-dictionary').next().offset().top,
+	// $('.termins-dictionary__content').prepend($alphabetClone);
+
+	// $(document).scroll(function(e) {
+	// 	var themeTop = $('.termins-dictionary').next().offset().top,
 			
-				alphabetTop = document.querySelector('.termins-dictionary__alphabet').getBoundingClientRect().top + document.body.scrollTop,
-				alphabetHeight = $alphabet.height();
+	// 			alphabetTop = document.querySelector('.termins-dictionary__alphabet').getBoundingClientRect().top + document.body.scrollTop,
+	// 			alphabetHeight = $alphabet.height();
 
 
-		console.log('scrollTop ' + $(this).scrollTop());
-		console.log('alphabetHeight ' + alphabetHeight);
+	// 	console.log('scrollTop ' + $(this).scrollTop());
+	// 	console.log('alphabetHeight ' + alphabetHeight);
 
-		if($(this).scrollTop() == themeTop - (alphabetTop + alphabetHeight)){
+	// 	if($(this).scrollTop() == themeTop - (alphabetTop + alphabetHeight)){
 
-			// stickPoint = $(this).scrollTop();
-		}
+	// 		// stickPoint = $(this).scrollTop();
+	// 	}
 
-		if($(this).scrollTop() > themeTop - alphabetHeight -200){
-			$('.termins-dictionary__content').removeClass('termins-dictionary__content--fixed');
-			$alphabetClone.removeClass('disabled');
-			console.log('if condition minus ' + ( themeTop - (alphabetTop + alphabetHeight)));
-			// console.log('stickPoint  ' + stickPoint );
-		}
-		if($(this).scrollTop() < themeTop - 300){
-			$('.termins-dictionary__content').addClass('termins-dictionary__content--fixed');
-			$alphabetClone.addClass('disabled');
-		}
-		if($(this).scrollTop() < $('.header').height() + $('.termins-dictionary .title-wrapper').height() + $('.termins-dictionary__filter').height()){
-			$('.termins-dictionary__content').removeClass('termins-dictionary__content--fixed');
-		}
+	// 	if($(this).scrollTop() > themeTop - alphabetHeight -200){
+	// 		$('.termins-dictionary__content').removeClass('termins-dictionary__content--fixed');
+	// 		$alphabetClone.removeClass('disabled');
+	// 		console.log('if condition minus ' + ( themeTop - (alphabetTop + alphabetHeight)));
+	// 		// console.log('stickPoint  ' + stickPoint );
+	// 	}
+	// 	if($(this).scrollTop() < themeTop - 300){
+	// 		$('.termins-dictionary__content').addClass('termins-dictionary__content--fixed');
+	// 		$alphabetClone.addClass('disabled');
+	// 	}
+	// 	if($(this).scrollTop() < $('.header').height() + $('.termins-dictionary .title-wrapper').height() + $('.termins-dictionary__filter').height()){
+	// 		$('.termins-dictionary__content').removeClass('termins-dictionary__content--fixed');
+	// 	}
 
 		
-	});
+	// });
 
 	// end alphabet to sticked	
 

@@ -7611,10 +7611,20 @@ ul, li {
     margin-bottom: 42px; }
   .day-termin .decor {
     top: 20px;
-    right: 99%; }
+    right: 98.3%; }
     .day-termin .decor:last-of-type {
       bottom: 80px;
       top: auto; }
+
+.day-termin__wrapper {
+  overflow: hidden; }
+  .day-termin__wrapper .slick-list {
+    overflow: visible; }
+  .day-termin__wrapper .slick-slide {
+    opacity: 0;
+    margin: 5px 5px 0 5px; }
+    .day-termin__wrapper .slick-slide.slick-active {
+      opacity: 1; }
 
 .day-termin__content {
   position: relative;
@@ -8850,20 +8860,10 @@ ul, li {
   .termins-dictionary__content .decor-dictionary-right {
     bottom: 100px;
     right: -150px; }
-  .termins-dictionary__content--fixed .termins-dictionary__alphabet {
-    position: fixed;
-    top: 160px;
-    height: -webkit-calc(70vh - 160px);
-    height: calc(70vh - 160px);
-    height: 200px;
-    overflow: auto; }
-  .termins-dictionary__content--fixed .termins-dictionary__blocks {
-    padding-left: 88px; }
 
 .termins-dictionary__alphabet {
   padding-right: 17px;
   width: 40px !important;
-  height: 200px !important;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
