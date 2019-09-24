@@ -241,8 +241,24 @@ $(function() {
 
 	// section day-termin
 		$('.day-termin__slider').slick({
-			nextArrow: $('.day-termin__nav .arrowed-right '),
-			fade: true
+			fade: true,
+			speed: 500
+		});
+
+		$('#day-termin__toggle').click(function() {
+			var $th = $(this);
+
+			if(!$th.hasClass('to-backward')){
+				$('.day-termin__slider').slick('slickNext');
+				$th.addClass('to-backward');
+				$th.text('Сегодняшний термин');
+			}else{
+				$('.day-termin__slider').slick('slickPrev');
+				$th.removeClass('to-backward');
+				$th.text('Вчерашний термин');
+			}
+
+			return false;
 		});
 	// ends section day-termin
 
@@ -499,7 +515,7 @@ $(function() {
 			var scrollPane = $('.scroll-pane').jScrollPane({
 				verticalDragMaxHeight : 16,
 				animateScroll : true,
-				resizeSensor: true,
+				resizeSensor: true
 				// contentWidth: 40 ,
 				// verticalGutter: 100,
 				// autoReinitialise: true
@@ -606,18 +622,18 @@ $(function() {
 	// end section forward
 
 	// alphabet to sticked
-	var $alphabet = $('.termins-dictionary__alphabet'),
-		alphabetWidth = $alphabet.width(),
-		alphabetBeforeHeight = $('.termins-dictionary__blocks').height();
-		$alphabetClone = $('<div>',{
-			'class': 'alphabetClone disabled',
-			'height': alphabetBeforeHeight,
-			'width': alphabetWidth
-		});
+	// var $alphabet = $('.termins-dictionary__alphabet'),
+	// 	alphabetWidth = $alphabet.width(),
+	// 	alphabetBeforeHeight = $('.termins-dictionary__blocks').height();
+	// 	$alphabetClone = $('<div>',{
+	// 		'class': 'alphabetClone disabled',
+	// 		'height': alphabetBeforeHeight,
+	// 		'width': alphabetWidth
+	// 	});
 
-		if($alphabet.height() > alphabetBeforeHeight){
-			$alphabet.height(alphabetBeforeHeight);
-		}
+	// 	if($alphabet.height() > alphabetBeforeHeight){
+	// 		$alphabet.height(alphabetBeforeHeight);
+	// 	}
 
 	// $('.termins-dictionary__content').prepend($alphabetClone);
 

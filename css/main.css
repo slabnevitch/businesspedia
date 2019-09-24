@@ -7616,15 +7616,8 @@ ul, li {
       bottom: 80px;
       top: auto; }
 
-.day-termin__wrapper {
-  overflow: hidden; }
-  .day-termin__wrapper .slick-list {
-    overflow: visible; }
-  .day-termin__wrapper .slick-slide {
-    opacity: 0;
-    margin: 5px 5px 0 5px; }
-    .day-termin__wrapper .slick-slide.slick-active {
-      opacity: 1; }
+.day-termin__wrapper .slick-slide {
+  margin: 5px 5px 0 5px; }
 
 .day-termin__content {
   position: relative;
@@ -8849,11 +8842,7 @@ ul, li {
   display: -o-flex;
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-  -webkit-align-items: flex-start;
-  -ms-flex-align: start;
-  align-items: flex-start; }
+  display: flex; }
   .termins-dictionary__content .decor-dictionary-left {
     top: 147px;
     left: -200px; }
@@ -8864,6 +8853,7 @@ ul, li {
 .termins-dictionary__alphabet {
   padding-right: 17px;
   width: 40px !important;
+  height: 860px !important;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
